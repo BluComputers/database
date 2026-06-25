@@ -18,28 +18,33 @@
 
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 0; color: #333; }
         
-        /* Header Utility Areas */
         .top-left { position: absolute; top: 10px; left: 15px; display: flex; flex-direction: column; align-items: flex-start; z-index: 10; }
         .top-right { position: absolute; top: 15px; right: 20px; text-align: right; color: white; z-index: 10; line-height: 1.4; }
         
         .logo { width: 80px; height: auto; border-radius: 4px; }
-        .copyright { font-size: 10px; color: white; margin-top: 4px; font-weight: bold; } /* Changed to White */
+        .copyright { font-size: 10px; color: white; margin-top: 4px; font-weight: bold; }
 
         .license-title { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
         .license-name { font-size: 14px; font-weight: bold; color: var(--accent); }
         .license-exp { font-size: 10px; font-style: italic; opacity: 0.8; }
 
-        .banner { 
-            background: var(--banner-blue); 
-            color: white; 
-            text-align: center; 
-            padding: 40px 0; 
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: relative;
-        }
+        .banner { background: var(--banner-blue); color: white; text-align: center; padding: 40px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: relative; }
         .banner h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; }
         .banner #liveClock { font-size: 1.1em; margin-top: 10px; font-weight: 300; opacity: 0.9; }
+
+        .button-nav { text-align: center; padding: 20px 0; }
+        .nav-btn { padding: 12px 30px; margin: 0 10px; border-radius: 6px; text-decoration: none; font-weight: bold; color: white; display: inline-block; transition: 0.3s; }
+        .btn-gtt { background: var(--banner-blue); border: 2px solid var(--warning); color: var(--warning); }
+        .btn-gtt:hover { background: var(--warning); color: white; }
+        .btn-wnct { background: var(--banner-blue); border: 2px solid var(--accent); color: var(--accent); }
+        .btn-wnct:hover { background: var(--accent); color: white; }
+
+        /* Mini Buttons for Table */
+        .btn-mini { padding: 4px 8px; font-size: 10px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block; margin: 2px; }
+        .mini-gtt { border: 1px solid var(--warning); color: var(--warning); }
+        .mini-gtt:hover { background: var(--warning); color: white; }
+        .mini-wnct { border: 1px solid var(--accent); color: var(--accent); }
+        .mini-wnct:hover { background: var(--accent); color: white; }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px 40px 20px; }
         .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 25px; }
@@ -80,6 +85,11 @@
 <div class="banner">
     <h1><b>Cloud Fleet Manager</b></h1>
     <div id="liveClock">Loading Date & Time...</div>
+</div>
+
+<div class="button-nav">
+    <a href="https://files.fm/u/gkbh2jhgwu" target="_blank" class="nav-btn btn-gtt">GTT DOCUMENTATION</a>
+    <a href="https://files.fm/u/9bhkf9vwun" target="_blank" class="nav-btn btn-wnct">WNCT DOCUMENTATION</a>
 </div>
 
 <div class="container">
@@ -186,8 +196,8 @@
                     <td>${v.tailLift}</td>
                     <td>${v.mot || '-'}</td>
                     <td>
-                        <div style="font-size:11px"><strong>Inspections:</strong> ${inspHtml(v.inspLinks)}</div>
-                        <div style="font-size:11px; margin-top:5px;"><strong>Job Cards:</strong> ${jobHtml(v.jobLinks)}</div>
+                        <a href="https://files.fm/u/gkbh2jhgwu" target="_blank" class="btn-mini mini-gtt">GTT</a>
+                        <a href="https://files.fm/u/9bhkf9vwun" target="_blank" class="btn-mini mini-wnct">WNCT</a>
                     </td>
                     <td>
                         <button class="btn btn-edit" onclick="editVehicle('${id}')">Edit</button>
@@ -200,16 +210,6 @@
             `;
         }
     });
-  }
-
-  function inspHtml(links) {
-      if(!links) return '<span style="color:#ccc">0</span>';
-      return links.map((l, i) => `<a href="${l}" target="_blank" style="text-decoration:none; display:inline-block; margin-right:5px; color:#3498db;">[${i+1}]</a>`).join('');
-  }
-
-  function jobHtml(links) {
-      if(!links) return '<span style="color:#ccc">0</span>';
-      return links.map((l, i) => `<a href="${l}" target="_blank" style="text-decoration:none; display:inline-block; margin-right:5px; color:#3498db;">[${i+1}]</a>`).join('');
   }
 
   document.getElementById('vehicleForm').onsubmit = function(e) {
